@@ -155,6 +155,12 @@ def event_handle(event):
             replyObj = TextSendMessage(text="เป็นๆ")
         elif (msg == "แจมินหล่อป่ะ") :
             replyObj = TextSendMessage(text="หล่อมาก ปัดซ้ายสุดขอบโลก ผัวยอดพีรมิด")
+        elif msgType == "covid":
+            url = "https://covid19.ddc.moph.go.th/api/Cases/today-cases-all"
+            response = requests.get(url)
+            response = response.json()
+            replyObj = TextSendMessage(text=str(response))
+            line_bot_api.reply_message(rtoken, replyObj)
         else :
             headers = request.headers
             json_headers = json.dumps({k:v for k, v in headers.items()})
@@ -177,12 +183,6 @@ def event_handle(event):
             '''
             replyObj = TextSendMessage(text=json_headers)
             line_bot_api.reply_message(rtoken, replyObj)
-    elif msgType == "covid":
-          url = "https://covid19.ddc.moph.go.th/api/Cases/today-cases-all"
-          response = requests.get(url)
-          response = response.json()
-          replyObj = TextSendMessage(text=str(response))
-          line_bot_api.reply_message(rtoken, replyObj)
         try:
             message_content = line_bot_api.get_message_content(event['message']['id'])
             i = Image.open(BytesIO(message_content.content))
