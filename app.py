@@ -155,7 +155,7 @@ def event_handle(event):
             replyObj = TextSendMessage(text="เป็นๆ")
         elif (msg == "แจมินหล่อป่ะ") :
             replyObj = TextSendMessage(text="หล่อมาก ปัดซ้ายสุดขอบโลก ผัวยอดพีรมิด")
-        elif msgType == "covid":
+        elif msg == "covid" :
             url = "https://covid19.ddc.moph.go.th/api/Cases/today-cases-all"
             response = requests.get(url)
             response = response.json()
