@@ -148,19 +148,19 @@ def event_handle(event):
         return ''
 
     if msgType == "text":
-        msg = str(event["message"]["text"])
-        if (msg == "สวัสดี") :
-            replyObj = TextSendMessage(text="ดีคว๊าฟ")
-        elif (msg == "เป็นมัมหมีป่ะ") :
-            replyObj = TextSendMessage(text="เป็นๆ")
-        elif (msg == "แจมินหล่อป่ะ") :
-            replyObj = TextSendMessage(text="หล่อมาก ปัดซ้ายสุดขอบโลก ผัวยอดพีรมิด")
-        elif msg == "covid" :
-            url = "https://covid19.ddc.moph.go.th/api/Cases/today-cases-all"
-            response = requests.get(url)
-            response = response.json()
-            replyObj = TextSendMessage(text=str(response))
-            line_bot_api.reply_message(rtoken, replyObj)
+         msg = str(event["message"]["text"])
+    if (msg == "สวัสดี") :
+         replyObj = TextSendMessage(text="ดีคว๊าฟ")
+    elif (msg == "เป็นมัมหมีป่ะ") :
+         replyObj = TextSendMessage(text="เป็นๆ")
+    elif (msg == "แจมินหล่อป่ะ") :
+         replyObj = TextSendMessage(text="หล่อมาก ปัดซ้ายสุดขอบโลก ผัวยอดพีรมิด")
+    elif msg == "covid" :
+         url = "https://covid19.ddc.moph.go.th/api/Cases/today-cases-all"
+         response = requests.get(url)
+         response = response.json()
+         replyObj = TextSendMessage(text=str(response))
+         line_bot_api.reply_message(rtoken, replyObj)
         else :
             headers = request.headers
             json_headers = json.dumps({k:v for k, v in headers.items()})
